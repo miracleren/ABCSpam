@@ -10,14 +10,16 @@ Description: Wordpress的垃圾评论中有95%是全英文评论和含有日文�
 
 function bbSpamStopCheck( $comment ) { 
 if (is_admin()){
-	$pattern = '/[一-龥]/u'; 
+	$strContent = $comment['comment_content'];
+	wp_die($strContent);
+	//$pattern = '/[一-龥]/u'; 
 	// 禁止全英文评论 
-	$status = preg_match_all(utf8_encode($pattern), utf8_encode($comment['comment_content']),$match);
-	if(!$status) { 
-		$mess = 'You should type some Chinese word (like 支持 ) in your comment to pass the spam-check, thanks for your patience! 您的评论中必须包含汉字!'; 
-        	wp_die($mess . '<br /><a href="' . $_SERVER['HTTP_REFERER'] .'#respond">返回</a>'.$status.utf8_encode($comment['comment_content']));
-	} 
-	return( $incoming_comment ); 
+	//$status = preg_match_all(utf8_encode($pattern), utf8_encode($comment['comment_content']),$match);
+	//if(!$status) { 
+		//$mess = 'You should type some Chinese word (like 支持 ) in your comment to pass the spam-check, thanks for your patience! 您的评论中必须包含汉字!'; 
+        	//wp_die($mess . '<br /><a href="' . $_SERVER['HTTP_REFERER'] .'#respond">返回</a>'.$status.utf8_encode($comment['comment_content']));
+	//} 
+	//return( $incoming_comment ); 
 }
 } 
 
