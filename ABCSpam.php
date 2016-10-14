@@ -14,7 +14,7 @@ function bbSpamStopCheck( $comment ) {
 	$status = preg_match_all($pattern, $comment['comment_content'],$match);
 	if(!$status) { 
 		$mess = 'You should type some Chinese word (like 支持 ) in your comment to pass the spam-check, thanks for your patience! 您的评论中必须包含汉字!'; 
-        	wp_die($mess . '<br /><a href="' . $_SERVER['HTTP_REFERER'] .'#respond">返回</a>'.$status.$comment['comment_content']);
+        	wp_die($mess . '<br /><a href="' . $_SERVER['HTTP_REFERER'] .'#respond">返回</a>'.$status.utf8_encode($comment['comment_content']));
 	} 
 	return( $incoming_comment ); 
 } 
