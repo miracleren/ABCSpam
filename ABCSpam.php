@@ -9,6 +9,7 @@ Description: Wordpress的垃圾评论中有95%是全英文评论和含有日文�
 */
 
 function bbSpamStopCheck( $comment ) { 
+if (is_admin()){
 	$pattern = '/[一-龥]/u'; 
 	// 禁止全英文评论 
 	$status = preg_match_all(utf8_encode($pattern), utf8_encode($comment['comment_content']),$match);
@@ -17,6 +18,7 @@ function bbSpamStopCheck( $comment ) {
         	wp_die($mess . '<br /><a href="' . $_SERVER['HTTP_REFERER'] .'#respond">返回</a>'.$status.utf8_encode($comment['comment_content']));
 	} 
 	return( $incoming_comment ); 
+}
 } 
 
 add_filter('bbp_new_reply_pre_content', 'bbSpamStopCheck');
