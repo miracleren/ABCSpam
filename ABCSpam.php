@@ -21,6 +21,7 @@ if (is_admin()){
 	//} 
 	//return( $incoming_comment ); 
 }
+	return( $incoming_comment ); 
 } 
 
 add_filter('bbp_new_reply_pre_content', 'bbSpamStopCheck');
